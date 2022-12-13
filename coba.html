@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASSESMEN AWAL MEDIS RAWAT INAP</title>
+    <style>
+        * {
+            font-family: sans-serif;
+            font-size: 12px;
+            line-height: 1.3;
+        }
+
+        table {
+            border:1px solid #000000;
+            border-collapse:collapse;
+            text-align: left;
+            page-break-after: auto;
+            width: 100%;
+        }
+
+        table tbody .number {
+            width: 3%;
+            vertical-align: top;
+        }
+
+        table tr {
+            border:1px solid #000000;
+            border-collapse:collapse;
+            page-break-inside:avoid; page-break-after:avoid;
+        }
+
+        table th {
+            border-collapse:collapse;
+            font-weight: bold;
+            padding-left: 10px;
+        }
+
+        table td {
+            border:1px solid #000000;
+            border-collapse:collapse;
+            page-break-inside:avoid; 
+            page-break-after:avoid;
+        }
+
+        table .sectionheader {
+            font-weight: bold;
+        }
+
+        .mini-table {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        .mini-table tr {
+            border: none;
+        }
+
+        .mini-table tr td {
+            margin: 0;
+            padding: 3px;
+            border: none;
+        }
+
+        .mini-table-2 {
+            margin: 0;
+            padding: 0;
+            border:1px solid #000000;
+        }
+
+        .mini-table-2 tr {
+            margin: 0;
+            padding: 0;
+            border:1px solid #000000;
+        }
+
+        .mini-table-2 tr td {
+            margin: 0;
+            padding: 2px;
+            border:1px solid #000000;
+        }
+
+        .mini-table .number {
+            vertical-align: top;
+        }
+
+        table .content-wrapper {
+            width: 100%;
+            margin-top: 0.5em;
+        }
+
+        .doc-number {
+            width: 100%;
+            text-align: right;
+        }
+
+        .paragraph {
+            text-align: justify;
+            text-rendering: geometricPrecision;
+        }
+
+        .flex-container {
+            display: -webkit-box; /* wkhtmltopdf uses this one */
+            display: flex;
+            -webkit-box-pack: left; /* wkhtmltopdf uses this one */
+            -webkit-flex-wrap: nowrap;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+        }
+
+        .flex-container > div {
+            white-space: nowrap;
+        }
+
+        .flex-child {
+            flex: 1;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+        }
+
+        .flex-child-dotted {
+            flex: 1;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            border-bottom: 2px dotted black;
+            margin: 0 0.25em 0.25em 0.25em;
+        }
+
+        .flex-child-solid {
+            flex: 1;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            border-bottom: 2px solid black;
+            margin: 0 0.25em 0.25em 0.25em;
+        }
+
+        .checkbox {
+            width: 0.25em;
+            height: 1em;
+            border: 1px solid black;
+            padding: 2px 0.5em 2px 0.5em;
+            margin-right: 0.5em;
+        }
+
+        .pagebreak {
+            min-height: 1px;
+            page-break-before: always;
+        }
+    </style>
+</head>
+<body>
+    <div class="doc-number">No. Form : RM/18.c/XII/2019</div>
+
+    <div class="flex-container">
+        <div class="flex-child" style="border: 1px solid black; padding-top: 2em;">
+            <table class="mini-table">
+                <tr>
+                    <td style="width: 30%;">
+                        <center><img width="80px" height="60px" src="<?= base_url('assets/css/edoc/logoAzalia.png') ?>"></center>
+                    </td> 
+                    <td>
+                        <b>RSIA AZALIA BENER MERIAH</b> <br>
+                        Jl.Empun Bayak Bale Atu, Bener Meriah <br>
+                        Hp : 082262154630 <br>
+                        Email : rsia.azalia@gmail.com
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="width: 1em;">&nbsp;</div>
+        <div class="flex-child">
+            <table>
+                <tr>
+                    <td style="width: 40%;">No. RM</td>
+                    <td><?= fill_doc($tipe, $pasien->id_pasien) ?>
+                </td>
+                </tr>
+                <tr>
+                    <td>Nama Pasien</td>
+                    <td><?= fill_doc($tipe, $pasien->nama) ?></td>
+                </tr>
+                <tr>
+                    <td>Tanggal Lahir</td>
+                    <td><?= fill_doc($tipe, datefmysql($pasien->tanggal_lahir)) ?></td>
+                </tr>
+                <tr>
+                    <td>NIK</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;"><i>(Harap Diisi atau tempelkan stiker bila ada)</i></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div style="width: 100%; text-align: center; font-weight: bold; margin: 1em 0 0 0; font-size:large;">
+        ASSESMEN AWAL MEDIS RAWAT INAP
+    </div>
+    <div style="text-align: center; margin-bottom:1em;">Dilengkapi selambat-lambatnya 24 jam setelah pasien masuk</div>
+    
+    <table>
+        <tr>
+            <td colspan="3">
+                <table class="mini-table">
+                    <tr>
+                        <th>A.	ANAMNESIS :</th>
+                        <th>
+                            <div class="flex-container">
+                                <div class="checkbox" style="margin-left: 0.5em;"></div>
+                                <div>Pasien Sendiri</div>
+                                <div class="checkbox" style="margin-left: 1em;"></div>
+                                <div>Orang Lain, Hubungan : ................... </div>
+                            </div>
+                        </th>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="3">
+                <table class="mini-table">
+                    <tr>
+                        <th>1.	Keluhan Utama dan Riwayat Penyakit Sekarang</th>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+                
+            </th>
+        </tr>
+        <tr>
+            <th colspan="3">
+                <table class="mini-table">
+                    <tr>
+                        <th>2.	Riwayat Kesehatan (Penyakit dahulu, Penyakit Keluarga, Operasi/Tindakan, Obat yang sedang dipakai, Alergi, Imunisasi, Tumbuh Kembang, Obstetri, Persalinan):</th>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </th>
+        </tr>
+        <tr>
+            <th colspan="3">
+                <div class="flex-container">
+                    <div>3.	Status Psikologis :</div>
+                    <div class="checkbox" style="margin-left: 2em;"></div>
+                    <div>Tenang</div>
+                    <div class="checkbox" style="margin-left: 1em;"></div>
+                    <div>Cemas</div>
+                    <div class="checkbox" style="margin-left: 1em;"></div>
+                    <div>Marah</div>
+                    <div class="checkbox" style="margin-left: 1em;"></div>
+                    <div>Sedih</div>
+                </div>
+            </th>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <table class="mini-table">
+                    <tr>
+                        <th style="width: 2%;">4.</th>
+                        <th>Riwayat Sosial Ekonomi :</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="flex-container">
+                                <div>•	Interaksi sosial pada keluarga dan lainnya :</div>
+                                <div class="checkbox" style="margin-left: 2em;"></div>
+                                <div>Baik</div>
+                                <div class="checkbox" style="margin-left: 1em;"></div>
+                                <div>Tidak</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="flex-container">
+                                <div>•	Pendidikan Terakhir :</div>
+                                <div class="checkbox" style="margin-left: 2em;"></div>
+                                <div>SD</div>
+                                <div class="checkbox" style="margin-left: 1em;"></div>
+                                <div>SLTP</div>
+                                <div class="checkbox" style="margin-left: 1em;"></div>
+                                <div>SLTA</div>
+                                <div class="checkbox" style="margin-left: 1em;"></div>
+                                <div>Perguruan Tinggi</div>
+                                <div class="checkbox" style="margin-left: 1em;"></div>
+                                <div>Tidak Sekolah</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="flex-container">
+                                <div>•	Pekerjaan :</div>
+                                <div class="checkbox" style="margin-left: 2em;"></div>
+                                <div>Wiraswasta       </div>
+                                <div class="checkbox" style="margin-left: 1em;"></div>
+                                <div>Karyawan Swasta</div>
+                                <div class="checkbox" style="margin-left: 1em;"></div>
+                                <div>PNS/TNI/POLRI       </div>
+                                <div class="checkbox" style="margin-left: 1em;"></div>
+                                <div>Lain-lain :	</div>
+                                <div class="flex-child-dotted">&nbsp;</div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <table class="mini-table">
+                    <tr>
+                        <th>5.	Kebiasan :</th>
+                        <th>
+                            <div class="flex-container">
+                                <div class="checkbox" style="margin-left: 0.5em;"></div>
+                                <div>Merokok	batang/hari</div>
+                                <div class="checkbox" style="margin-left: 1em;"></div>
+                                <div>Alkohol </div>
+                                <div class="checkbox" style="margin-left: 1em;"></div>
+                                <div>Narkotika/Psikotropika      </div>
+                                <div class="checkbox" style="margin-left: 1em;"></div>
+                                <div>Olahraga: </div>
+                                <div class="flex-child-dotted">&nbsp;</div>
+                            </div>
+                        </th>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="3">B.	PEMERIKSAAN FISIK</th>
+        </tr>
+        <tr>
+            <td>1.	Keadaan Umum</td>
+            <td colspan="2">
+                <div class="flex-container">
+                    <div class="checkbox" style="margin-left: 0.5em;"></div>
+                    <div>Tidak Sakit</div>
+                    <div class="checkbox" style="margin-left: 1em;"></div>
+                    <div>Sakit Ringan </div>
+                    <div class="checkbox" style="margin-left: 1em;"></div>
+                    <div>Sakit Sedang </div>
+                    <div class="checkbox" style="margin-left: 1em;"></div>
+                    <div>Sakit Berat </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>2.	Kesadaran</td>
+            <td colspan="2">
+                <div class="flex-container">
+                    <div class="checkbox" style="margin-left: 0.5em;"></div>
+                    <div>Compos Mentis</div>
+                    <div class="checkbox" style="margin-left: 1em;"></div>
+                    <div>Apatis </div>
+                    <div class="checkbox" style="margin-left: 1em;"></div>
+                    <div>Somnolen   </div>
+                    <div class="checkbox" style="margin-left: 1em;"></div>
+                    <div>Sopor          </div>
+                    <div class="checkbox" style="margin-left: 1em;"></div>
+                    <div>Koma</div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>3.	GCS</td>
+            <td colspan="2">E =............, V =........... 	, M =.......... 	</td>
+        </tr>
+        <tr>
+            <td>4.	Tanda-tanda Vital</td>
+            <td colspan="2">Tensi =............ 	mmHg, Nadi =............ 	x/mnt,Respirasi =............	x/mnt,Suhu =............          0C,   
+                SpO2=............	%
+               </td>
+        </tr>
+        <tr>
+            <td>5.	Status Gizi</td>
+            <td colspan="2"> 
+                <div class="flex-container">
+                    <div>BB =............ 	Kg,</div>
+                    <div class="checkbox" style="margin-left: 0.5em;"></div>
+                    <div>Lebih            </div>
+                    <div class="checkbox" style="margin-left: 1em;"></div>
+                    <div>Normal/Baik         </div>
+                    <div class="checkbox" style="margin-left: 1em;"></div>
+                    <div>Kurang           </div>
+                    <div class="checkbox" style="margin-left: 1em;"></div>
+                    <div>Buruk          </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>6.	Kepala</td>
+            <td style="width: 10% ;">
+                <div class="flex-container">
+                    <div class="checkbox" style="margin-left: 0.5em;"></div>
+                    <div>Normal            </div>
+                </div>
+            </td>
+            <td>
+                <div class="flex-container">
+                    <div class="checkbox" style="margin-left: 0.5em;"></div>
+                    <div>Abnormal :            </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>7.	Mata</td>
+            <td colspan="2" style="width: 10% ;">
+            </td>
+        </tr>
+        <tr>
+            <td>8.	Hidung</td>
+            <td style="width: 10% ;">
+                <div class="flex-container">
+                    <div class="checkbox" style="margin-left: 0.5em;"></div>
+                    <div>Normal            </div>
+                </div>
+            </td>
+            <td>
+                <div class="flex-container">
+                    <div class="checkbox" style="margin-left: 0.5em;"></div>
+                    <div>Abnormal :            </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>9.	Gigi & Mulut</td>
+            <td style="width: 10% ;">
+                <div class="flex-container">
+                    <div class="checkbox" style="margin-left: 0.5em;"></div>
+                    <div>Normal            </div>
+                </div>
+            </td>
+            <td>
+                <div class="flex-container">
+                    <div class="checkbox" style="margin-left: 0.5em;"></div>
+                    <div>Abnormal :            </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>10.	Tenggorokoan</td>
+            <td style="width: 10% ;">
+                <div class="flex-container">
+                    <div class="checkbox" style="margin-left: 0.5em;"></div>
+                    <div>Normal            </div>
+                </div>
+            </td>
+            <td>
+                <div class="flex-container">
+                    <div class="checkbox" style="margin-left: 0.5em;"></div>
+                    <div>Abnormal :            </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>11.	Telinga</td>
+            <td style="width: 10% ;">
+                <div class="flex-container">
+                    <div class="checkbox" style="margin-left: 0.5em;"></div>
+                    <div>Normal            </div>
+                </div>
+            </td>
+            <td>
+                <div class="flex-container">
+                    <div class="checkbox" style="margin-left: 0.5em;"></div>
+                    <div>Abnormal :            </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>12.	Leher</td>
+            <td style="width: 10% ;">
+                <div class="flex-container">
+                    <div class="checkbox" style="margin-left: 0.5em;"></div>
+                    <div>Normal            </div>
+                </div>
+            </td>
+            <td>
+                <div class="flex-container">
+                    <div class="checkbox" style="margin-left: 0.5em;"></div>
+                    <div>Abnormal :            </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>13.	Thoraks</td>
+            <td style="width: 10% ;">
+                <div class="flex-container">
+                    <div class="checkbox" style="margin-left: 0.5em;"></div>
+                    <div>Normal            </div>
+                </div>
+            </td>
+            <td>
+                <div class="flex-container">
+                    <div class="checkbox" style="margin-left: 0.5em;"></div>
+                    <div>Abnormal :            </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>14.	Jantung</td>
+            <td style="width: 10% ;">
+                <div class="flex-container">
+                    <div class="checkbox" style="margin-left: 0.5em;"></div>
+                    <div>Normal            </div>
+                </div>
+            </td>
+            <td>
+                <div class="flex-container">
+                    <div class="checkbox" style="margin-left: 0.5em;"></div>
+                    <div>Abnormal :            </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>15.	Paru</td>
+            <td colspan="2" style="width: 10% ;">
+            </td>
+        </tr>
+        <tr>
+            <td>16.	Abdomen</td>
+            <td colspan="2" style="width: 10% ;">
+            </td>
+        </tr>
+        <tr>
+            <td>17.	Genetalia & Anus</td>
+            <td colspan="2" style="width: 10% ;">
+            </td>
+        </tr>
+        <tr>
+            <td>18.	Ekstremitas</td>
+            <td colspan="2" style="width: 10% ;">
+            </td>
+        </tr>
+        <tr>
+            <td>19.	Kulit</td>
+            <td colspan="2" style="width: 10% ;">
+            </td>
+        </tr>
+    </table>
+<!-- page 2 -->
+    <div class="pagebreak"></div>
+
+    <div class="doc-number">No. Form : RM/18.c/XII/2019</div>
+
+    <table>
+        <tr>
+            <th style="text-align: center;">STATUS LOKALIS</th>
+        </tr>
+        <tr>
+            <td>
+                <table class="mini-table" style="width:90%; margin:auto;">
+                    <tr>
+                        <td style="width:50%">
+                            <table class="mini-table" style="width: 200px; font-weight: bold;">
+                                <tr >
+                                    <td>kanan</td>
+                                    <td>kiri</td>
+                                    <td>kiri</td>
+                                    <td style="text-align: right;">kanan</td>
+                                </tr>
+                            </table>
+                            <img src="<?= base_url('assets/css/edoc/male_body.JPG') ?>" alt="" style="width: 200px; height:auto;">
+                        </td>
+                        <td style="width:50%">
+                            <table class="mini-table" style="width: 200px; font-weight: bold;">
+                                <tr>
+                                    <td>kanan</td>
+                                    <td  style="text-align: right;">kiri</td>
+                                </tr>
+                            </table>
+                            <img src="<?= base_url('assets/css/edoc/head.JPG') ?>" alt="" style="width: 200px; height:auto;">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <th>C.	HASIL PEMERIKSAAN PENUNJANG SEBELUM DIRAWAT ( LAB, RADIOLOGI, DLL ) :</th>
+        </tr>
+        <tr>
+            <td style="height: 10em;"></td>
+        </tr>
+        <tr>
+            <th>D.	HASIL PEMERIKSAAN PENUNJANG SEKARANG</th>
+        </tr>
+        <tr style="height: 10em;">
+            <th style="vertical-align: top;">Laboratorium:</th>
+        </tr>
+        <tr style="height: 10em;">
+            <th style="vertical-align: top;">Radiologi:</th>
+        </tr>
+        <tr style="height: 15em;">
+            <th style="vertical-align: top;">Penunjang Lain:</th>
+        </tr>
+    </table>
+<!-- page 3 -->
+    <div class="pagebreak"></div>
+
+    <div class="doc-number">No. Form : RM/18.c/XII/2019</div>
+
+    <table>
+        <tr>
+            <th colspan="3">E.	DAFTAR DIAGNOSIS DAN DIAGNOSIS BANDING (Ditulis berurutan sesuai prioritas)</th>
+        </tr>
+        <tr>
+            <td style="font-weight: bold; text-align:center; width:10%;">Prioritas</td>
+            <td style="font-weight: bold; text-align:center; width:50%;">Diagnosis</td>
+            <td style="font-weight: bold; text-align:center;">Diagnosis Banding (bila ada)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold; text-align:center; width:10%;">1. <br><br> 2. <br><br> 3. <br><br> 4. <br><br>...
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <th colspan="3">F. RENCANA PENATALAKSANAAN</th>
+        </tr>
+        <tr>
+            <th colspan="3">
+                <table class="mini-table">
+                    <tr>
+                        <td>1.	Rencana Penatalaksanaan dengan Target Terukur</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>     
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>Diet :</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>Terapi Nyeri :(Sesuai derajat nyeri dari hasil assesmen nyeri oleh perawat pada pengkajian awal keperawatan rawat inap)</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </th>
+        </tr>
+        <tr style="height: 8em;">
+            <th colspan="3" style="vertical-align: top;">2.	Pemeriksaan Penunjang Lanjutan</th>
+        </tr>
+        <tr  style="height: 8em;">
+            <th colspan="3"  style="vertical-align: top;">3.	Edukasi</th>
+        </tr>
+        <tr  style="height: 8em;">
+            <th colspan="3"  style="vertical-align: top;">4.	Konsul</th>
+        </tr>
+        <tr>
+            <th colspan="3">F.	INSTRUKSI MEDIS (Instruksi ditulis dengan jelas dan rinci)</th>
+        </tr>
+        <tr  style="height: 20em;">
+            <td colspan="3"  style="vertical-align: top;">&nbsp;</td>
+        </tr>
+
+    </table>
+<!-- page 4 -->
+    <div class="pagebreak"></div>
+
+    <div class="doc-number">No. Form : RM/18.c/XII/2019</div>
+
+    <table>
+        <tr>
+            <th colspan="3">G.	RENCANA PEMULANGAN /DISCHARGE PLANNING</th>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <table class="mini-table">
+                    <tr>
+                        <td style="font-weight: bold; width:1%;">1.	</td>
+                        <td style="font-weight: bold;">Skrining Risiko Pasien Pulang</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>a.	Umur > 65 tahun</td>
+                        <td style="width: 1%;">:</td>
+                        <td>
+                            
+                            <div class="flex-container">
+                                <div>:</div>
+                                <div class="checkbox" style="margin-left: 0.5em;"></div>
+                                <div>Ya            </div>
+                                <div class="checkbox" style="margin-left: 0.5em;"></div>
+                                <div>Tidak            </div>
+
+                            </div>
+                        </td>
+                        <td>c.	Perawatan / pengobatan lanjutan                      </td>
+                        <td>
+                            
+                            <div class="flex-container">
+                                <div>:</div>
+                                <div class="checkbox" style="margin-left: 0.5em;"></div>
+                                <div>Ya            </div>
+                                <div class="checkbox" style="margin-left: 0.5em;"></div>
+                                <div>Tidak            </div>
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>b.	Keterbatasan mobilitas</td>
+                        <td>
+                            
+                            <div class="flex-container">
+                                <div>:</div>
+                                <div class="checkbox" style="margin-left: 0.5em;"></div>
+                                <div>Ya            </div>
+                                <div class="checkbox" style="margin-left: 0.5em;"></div>
+                                <div>Tidak            </div>
+
+                            </div>
+                        </td>
+                        <td>d.	Bantuan melakukan aktifitas harian</td>
+                        <td>
+                            
+                            <div class="flex-container">
+                                <div>:</div>
+                                <div class="checkbox" style="margin-left: 0.5em;"></div>
+                                <div>Ya            </div>
+                                <div class="checkbox" style="margin-left: 0.5em;"></div>
+                                <div>Tidak            </div>
+
+                            </div>
+                        </td>
+                    </tr>   
+                </table>
+                <table class="mini-table">
+                    <tr>
+                        <td style="font-weight: bold;">
+                            2.	Rencana Lama Rawat : 	 Hari
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="mini-table">
+                    <tr>
+                        <td style="font-weight: bold; width:1%;">3.</td>
+                        <td style="font-weight: bold;">
+                        Kebutuhan Pasien Pulang :
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="flex-container">
+                                <div class="checkbox" style="margin-left: 0.5em;"></div>
+                                <div>Perawatan diri (mandi, BAB, BAK)	</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex-container">
+                                <div class="checkbox" style="margin-left: 0.5em;"></div>
+                                <div>Latihan fisik lanjutan</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="flex-container">
+                                <div class="checkbox" style="margin-left: 0.5em;"></div>
+                                <div>Pemantauan pemberian obat</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex-container">
+                                <div class="checkbox" style="margin-left: 0.5em;"></div>
+                                <div>Pendampingan tenaga khusus di rumah</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="flex-container">
+                                <div class="checkbox" style="margin-left: 0.5em;"></div>
+                                <div>Pemantauan diet</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex-container">
+                                <div class="checkbox" style="margin-left: 0.5em;"></div>
+                                <div>Bantuan medis/perawatan di rumah (home care)</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="flex-container">
+                                <div class="checkbox" style="margin-left: 0.5em;"></div>
+                                <div>Perawatan luka</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex-container">
+                                <div class="checkbox" style="margin-left: 0.5em;"></div>
+                                <div>Bantuan melakukan aktifitas fisik (kursi roda, alat bantu jalan)</div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+        <tr>
+            <th colspan="3" style="text-align: center;">Yang Melakukan Pemeriksaan</th>
+        </tr>
+        <tr>
+            <td style="text-align: center; font-weight: bold;">Tanggal dan Jam</td>
+            <td style="text-align: center; font-weight: bold;">Nama DPJP</td>
+            <td style="text-align: center; font-weight: bold;">Tanda Tangan</td>
+        </tr>
+        <tr>
+            <td  style="height: 8em;">&nbsp;</td>
+            <td  style="height: 8em;"> &nbsp;</td>
+            <td  style="height: 8em;">&nbsp;</td>
+        </tr>
+    </table>
+
+</body>
+</html> 
